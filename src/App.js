@@ -10,8 +10,10 @@ class BooksApp extends React.Component {
     books: []
   }
 
+  /**
+    * @description Carrega todos os livros imediatamente após a montagem do BooksApp
+    */
   componentDidMount() {
-    // Carrega todos os livros e seta em uma variavel
     BooksAPI.getAll().then((books) => {
       this.setState({ books })
     })
