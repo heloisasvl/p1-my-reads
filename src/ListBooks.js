@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 
 class ListBooks extends React.Component {
   render() {
+    const { books } = this.props
+
     return (
       <div className="list-books">
         <div className="list-books-title">
