@@ -11,19 +11,24 @@ Essas instruções farão com que você tenha uma cópia do projeto em execuçã
 
 ## Estrutura do projeto
 ```bash
-├── README.md
-├── package.json
 ├── public
 │   ├── favicon.ico
 │   └── index.html
-└── src
-    ├── App.css
-    ├── App.js
-    ├── BooksAPI.js
-    ├── icons
-    │   ├── add.svg
-    │   ├── arrow-back.svg
-    │   └── arrow-drop-down.svg
-    ├── index.css
-    └── index.js
+├── src
+│   ├── icons
+│   │   ├── add.svg
+│   │   ├── arrow-back.svg
+│   │   └── arrow-drop-down.svg
+│   ├── utils
+│   │   └── BooksAPI.js
+│   ├── App.css
+│   ├── App.js
+│   ├── Book.js
+│   ├── index.css
+│   ├── index.js
+│   ├── ListBooks.js
+│   └── SearchBooks.js
+├── .gitignore
+├── package.json
+└── README.md
 ```
