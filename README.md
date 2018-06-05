@@ -8,6 +8,7 @@ Essas instruções farão com que você tenha uma cópia do projeto em execuçã
 
 * Instalar todas as dependências do projeto com `npm install`
 * Iniciar o servidor de desenvolvimento com `npm start`
+* Acessar o projeto pelo endereço `http://localhost:3000`
 
 ## Estrutura do projeto
 ```bash
