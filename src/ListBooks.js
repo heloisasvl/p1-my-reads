@@ -4,7 +4,7 @@ import Book from './Book'
 
 class ListBooks extends React.Component {
   render() {
-    const { books } = this.props
+    const { books, onChangeBookShelf } = this.props
 
     return (
       <div className="list-books">
@@ -20,7 +20,7 @@ class ListBooks extends React.Component {
                   {books.filter(book => book.shelf === "currentlyReading")
                   .map((book) => (
                     <li key={book.id}>
-                      <Book book={book} />
+                      <Book book={book} onChangeBookShelf={onChangeBookShelf} />
                     </li>
                   ))}
                 </ol>
@@ -33,7 +33,7 @@ class ListBooks extends React.Component {
                   {books.filter(book => book.shelf === "wantToRead")
                   .map((book) => (
                     <li key={book.id}>
-                      <Book book={book} />
+                      <Book book={book} onChangeBookShelf={onChangeBookShelf} />
                     </li>
                   ))}
                 </ol>
@@ -46,7 +46,7 @@ class ListBooks extends React.Component {
                   {books.filter(book => book.shelf === "read")
                   .map((book) => (
                     <li key={book.id}>
-                      <Book book={book} />
+                      <Book book={book} onChangeBookShelf={onChangeBookShelf} />
                     </li>
                   ))}
                 </ol>
