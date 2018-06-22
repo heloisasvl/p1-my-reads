@@ -6,11 +6,11 @@ import Book from './Book'
 class SearchBooks extends React.Component {
   state = {
     query: '',
-    books: []
+    results: []
   }
 
   handleInputChange = () => {
-    this.setState({ books: [] })
+    this.setState({ results: [] })
     this.setState({
       query: this.search.value
     }, () => {
@@ -23,15 +23,44 @@ class SearchBooks extends React.Component {
   }
 
   getSearch = () => {
-    BooksAPI.search(this.state.query).then((result) => {
-      if (!result.error) {
-        this.setState({ books: result })
+    const { books } = this.props
+
+    BooksAPI.search(this.state.query).then((results) => {
+      if (results && !results.error) {
+        results = results.map(b => {
+          const book = books.find(book => book.id === b.id)
+          if (book) {
+            b.shelf = book.shelf
+          } else {
+            b.shelf = 'none'
+          }
+          return b
+        })
+        this.setState({ results })
       }
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    // You don't have to do this check first, but it can help prevent an unneeded render
+    if (nextProps.books !== this.state.books) {
+      this.setState(status => ({
+        results: status.results.map(b => {
+          const book = nextProps.books.find(book => book.id === b.id)
+          if (book) {
+            b.shelf = book.shelf
+          } else {
+            b.shelf = 'none'
+          }
+          return b
+        })
+      }))
+    }
+  }
+
   render() {
-    const { books } = this.state
+    const { results } = this.state
+    const { onChangeBookShelf } = this.props
 
     return (
       <div className="search-books">
@@ -43,9 +72,9 @@ class SearchBooks extends React.Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {books.map(book => (
+            {results.map(book => (
               <li key={book.id}>
-                <Book book={book} />
+                <Book book={book} onChangeBookShelf={onChangeBookShelf} />
               </li>
             ))}
           </ol>
